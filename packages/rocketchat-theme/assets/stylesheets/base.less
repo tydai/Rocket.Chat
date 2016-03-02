@@ -27,6 +27,10 @@
 	user-select: text;
 }
 
+.no-scroll {
+	overflow: hidden !important;
+}
+
 .page-settings, .page-settings * {
 	-webkit-user-select: text;
 	-moz-user-select: text;
@@ -1225,6 +1229,32 @@ a.github-fork {
 		}
 		> .wrapper {
 			direction: ltr;
+
+			.flex-control {
+				.search {
+					display: table;
+					width: 100%;
+					margin-bottom: 10px;
+				}
+				.sort {
+					display: table;
+					width: 100%;
+					margin-bottom: 30px;
+					position: relative;
+
+					.sort-item {
+						display: table-cell;
+						vertical-align: middle;
+						text-align: center;
+						position: relative;
+						padding-right: 5px;
+
+						&:first {
+							width: 1px;
+						}
+					}
+				}
+			}
 		}
 		h4 {
 			margin-bottom: 30px;
@@ -2048,7 +2078,7 @@ a.github-fork {
 			tbody {
 				td {
 					vertical-align: middle;
-					padding: 0 2px;
+					padding: 2px 2px;
 				}
 				tr {
 					cursor: pointer;
@@ -2780,9 +2810,11 @@ a.github-fork {
 	&.system {
 		.body {
 			font-style: italic;
-			text-transform: lowercase;
 			em {
 				font-weight: 600;
+			}
+			.attachment {
+				font-style: normal;
 			}
 		}
 	}
@@ -2844,7 +2876,7 @@ a.github-fork {
 	right: 0;
 	background: #FCFCFC;
 	border-left: 1px solid #eaeaea;
-	z-index: 13;
+	z-index: 130;
 
 	.tab-button {
 		cursor: pointer;
@@ -2871,7 +2903,7 @@ a.github-fork {
 	border-left: 1px solid;
 	overflow-x: visible;
 	position: fixed;
-	z-index: 100;
+	z-index: 110;
 	max-width: @flex-tab-width;
 	width: 90%;
 	bottom: 0;
@@ -4020,12 +4052,14 @@ a.github-fork {
 		}
 		.main-content {
 			left: 0;
-			.transition(transform .2s linear);
-			z-index: 1000;
+			z-index: 120;
 
 			&.notransition {
 				.transition(transform .0s);
 			}
+		}
+		.main-content, .flex-tab-bar {
+			.transition(transform .2s linear);
 		}
 		.fixed-title h2 {
 			margin-left: 45px;
@@ -4059,7 +4093,7 @@ a.github-fork {
 					}
 				}
 			}
-			.main-content {
+			.main-content, .flex-tab-bar {
 				.transform(translateX(@rooms-box-width));
 			}
 		}
@@ -4441,6 +4475,7 @@ a.github-fork {
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
+	margin-bottom: 0px !important;
 
 	* {
 		-webkit-user-select: text;
@@ -4455,6 +4490,28 @@ a.github-fork {
 		.time {
 			color: #666;
 		}
+	}
+}
+
+.new-logs {
+	margin: 0 -65px;
+	position: absolute;
+	border-radius: 20px;
+	width: 130px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 0.8em;
+	cursor: pointer;
+	bottom: 8px;
+	left: 50%;
+	background: #FFF;
+	color: #428bca;
+
+	.transition(transform 0.3s ease-out);
+	.transform(translateY(0));
+	&.not {
+		.transform(translateY(150%));
 	}
 }
 
